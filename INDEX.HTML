@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <canvas id="canvas" width=800 height=388 style="border: 1px solid red;"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        console.log(canvas);
+        var ctx = canvas.getContext("2d");
+
+
+        var imgTag = new Image();
+        imgTag.onload = animate;
+        imgTag.src = '/imp/ball.png'
+        imgTag.height = 100;
+        imgTag.width = 100;
+
+
+        var x = canvas.width / 2 - imgTag.width / 2;
+        var y = canvas.height / 2 - imgTag.height / 2;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);  
+            ctx.drawImage(imgTag, x, y);                   
+            x += 4;
+          //  if (x < 640) requestAnimationFrame(animate)        
+         // requestAnimationFrame(animate)
+        }
+
+
+        document.onkeydown = checkKey;
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38' && e.keyCode == '90') {
+                console.log('len');
+                y *= 5;
+                if (y > 0) {
+                    imgTag.onload = animate();
+                } else {
+                    y += 5;
+                }
+
+                // up arrow
+            }
+            else if (e.keyCode == '40') {
+
+                y += 5;
+                if (y > 0) {
+                    imgTag.onload = animate();
+                } else {
+                    y -= 5;
+                    console.log(y);
+                }
+            }
+            else if (e.keyCode == '37') {
+                X+=5
+            }
+            else if (e.keyCode == '39') {
+                X-=5
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>
